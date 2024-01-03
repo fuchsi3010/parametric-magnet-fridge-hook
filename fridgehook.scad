@@ -3,7 +3,7 @@ $fn=80;
 
 magnet_amount = 2;
 magnet_height = 2;
-magnet_diameter = 8;
+magnet_diameter = 12;
 
 baseplate_width = magnet_diameter+20;
 baseplate_height = magnet_amount*magnet_height+0.2+0.6; //0.2 = bottom thickness (low --> good magnet strength), 0.6 = top thickness
@@ -28,7 +28,7 @@ module baseplate(){
 }
 
 module magnet_cavity() {
-  cylinder(h=magnet_height*magnet_amount, r=magnet_diameter);
+  cylinder(h=magnet_height*magnet_amount, d=magnet_diameter);
 }
 
 module hook() {
