@@ -1,13 +1,14 @@
 
-$fn=10; //change to 80!
+$fn=80; //change to 80!
 
 magnet_amount = 1;
 magnet_height = 2;
-magnet_diameter = 10;
+magnet_diameter = 12;
 
 hook_length = 30; //length of the hook/horn to hang stuff on
+hook_angle = 14; // 5 - 15 are good values
 
-baseplate_width = magnet_diameter+20;
+baseplate_width = magnet_diameter+14;
 baseplate_height = magnet_amount*magnet_height+0.2+0.6; //0.2 = bottom thickness (low --> good magnet strength), 0.6 = top thickness
 baseplate_length = 50;
 baseplate_chamfer = 2;
@@ -31,20 +32,20 @@ module baseplate(){
 }
 
 module magnet_cavity() {
-  cylinder(h=magnet_height*magnet_amount, d=magnet_diameter*1.02);
+  cylinder(h=magnet_height*magnet_amount, d=magnet_diameter*1.04);
 }
 
 module hook() {
   difference(){   
-     translate([0,0,baseplate_height/2]) 
+     translate([0,0,baseplate_height/2+0.2]) 
        rotate([0,7,0]) 
        cylinder(h=5, r1=12, r2=5);
      baseplate();
   }
 
   difference(){
-    translate([0,0,baseplate_height/2]) 
-      rotate([0,7,0]) 
+    translate([-hook_angle/20,0,baseplate_height/2]) 
+      rotate([0,hook_angle,0]) 
       cylinder(h=hook_length, r1=5, r2=4);
     baseplate();
   }
